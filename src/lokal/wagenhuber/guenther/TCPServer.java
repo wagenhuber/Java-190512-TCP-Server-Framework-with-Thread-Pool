@@ -1,3 +1,8 @@
+//Klasse stellt den TCP-Server dar, welcher eine beliebige Funktionalität ausführen kann
+//Übergabe der Funktion via Class<?> handlerClass
+//Funktion als Beispiele "EchoServer" in seperater Klasse implementiert
+
+
 package lokal.wagenhuber.guenther;
 
 import com.sun.tools.internal.ws.wsdl.parser.AbstractExtensionHandler;
@@ -17,7 +22,7 @@ public class TCPServer extends Thread{
     private ServerSocket serverSocket;
     private ExecutorService pool;
 
-    public TCPServer(int port, Class<?> handlerClass) {
+    public TCPServer(int port, Class<?> handlerClass) throws IOException{
         this.handlerClass = handlerClass;
         serverSocket = new ServerSocket(port);
 
@@ -32,10 +37,11 @@ public class TCPServer extends Thread{
         try {
             while (true){
                 //Beim Aufruf von stopServer() wird eine Socket-Exception ausgelöst
+                System.out.println("TCPServer run()");
                 Socket clientSocket = serverSocket.accept();
                 handle(clientSocket);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             System.err.println();
         }
     }
@@ -49,8 +55,9 @@ public class TCPServer extends Thread{
         pool.shutdown();
     }
 
-    private void handle(Socket clientSocket){
+    private void handle(Socket clientSocket) throws Exception{
         AbstractHandler handler = ((AbstractHandler) handlerClass.newInstance());
+        System.out.printf(handler.toString());
         handler.handle(clientSocket, pool);
     }
 }
