@@ -20,5 +20,6 @@ public abstract class AbstractHandler implements Runnable{
         this.clientSocket = clientSocket;
         pool.execute(this);
     }
+    //Implementierung der RUN-Methode erfolgt im konkreten Handler -> in diesem Fall Klasse "EchoHandler"
     public abstract void run();
 }

@@ -17,6 +17,8 @@ public class EchoServer {
         System.out.println("Server gestartet...");
 
         //Lesen von der Standardeingabe, passend zur Funktionalität der Klasse "Echohandler"
+        //ENTER drücken um Server wieder zu beenden
+        //Lesen Standardeingabe dient nur dem Beenden des Servers!!!
         System.in.read();
 
         tcpServer.stopServer();

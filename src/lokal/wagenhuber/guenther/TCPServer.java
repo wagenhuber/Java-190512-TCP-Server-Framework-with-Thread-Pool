@@ -5,7 +5,7 @@
 
 package lokal.wagenhuber.guenther;
 
-import com.sun.tools.internal.ws.wsdl.parser.AbstractExtensionHandler;
+
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -20,8 +20,10 @@ public class TCPServer extends Thread{
     //By writing Class<?>, you're declaring a Class object which can be of any type
     private Class<?> handlerClass;
     private ServerSocket serverSocket;
+    //interface ExecutorService: An Executor that provides methods to manage termination and methods that can produce a Future for tracking progress of one or more asynchronous tasks.
     private ExecutorService pool;
 
+    //Die konkrete Handlerklasse wird von Klasse EchoServer (aufrufende Klasse) übergeben
     public TCPServer(int port, Class<?> handlerClass) throws IOException{
         this.handlerClass = handlerClass;
         serverSocket = new ServerSocket(port);

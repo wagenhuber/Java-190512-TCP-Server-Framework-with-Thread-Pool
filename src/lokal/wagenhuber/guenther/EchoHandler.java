@@ -1,3 +1,5 @@
+//Konkrete Implementierung der Funktionalität
+
 package lokal.wagenhuber.guenther;
 
 import java.io.BufferedReader;
